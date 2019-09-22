@@ -1,52 +1,18 @@
 #include <stdio.h>
 #include <stdlib.h>
-struct node
+int recgcd(int n1,int n2);
+int main()
 {
-    int data;
-    struct node * next;
-}*start=NULL;
-void creatnode(int s)
-{
-    int i=0,d;
-    struct node * newnode,*ptr;
-    scanf("%d",&d);
-    while(i<s)
-        newnode=(struct node *)malloc(sizeof(struct node));
-        newnode->data=d;
-        newnode->next=NULL;
-        if(start==NULL)
-            newnode=start;
-        else
-            ptr=start;
-            while(ptr->next!=NULL)
-            {
-               ptr=ptr->next;
-            }
-            ptr->next=newnode;
-            scanf("%d",&d);
-            i--;
+    int a,b,f;
+    printf("enter two numbers:");
+    scanf("%d%d",&a,&b);
+    f=recgcd(a,b);
+    printf("GCD od %d and %d is %d",a,b,f);
 }
-
-int search(int k)
+int recgcd(int n1,int n2)
 {
-    struct node * temp=start;
-    int i;
-    for(i=1;i<k;i++)
-    {
-        temp=temp->next;
-    }
-    return temp->data;
-}
-void main()
-{
-    int s,n,k,x;
-    printf("enter size:");
-    scanf("%d",&s);
-    creatnode(s);
-    printf("enter node no from end:");
-    scanf("%d",n);
-
-    k=s-n+1;
-    x=search(k);
-    printf("%d",x);
+    if(n1==0)
+        return n2;
+    else
+        return (recgcd(n2%n1,n1));
 }
